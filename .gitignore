@@ -1,0 +1,8 @@
+.vs
+Core/bin
+Core/obj
+packages
+SanityTests/bin
+SanityTests/obj
+WebApplicationTelerikReporting/bin
+WebApplicationTelerikReporting/obj

@@ -1,0 +1,4 @@
+[oledb]
+; Everything after this line is an OLE DB initstring
+Provider=System.Data.SqlClient;
+Data Source=(local);Initial Catalog=AdventureWorks;Integrated Security=SSPI
