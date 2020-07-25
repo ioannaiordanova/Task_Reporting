@@ -1,19 +1,17 @@
-﻿using Core.Utilities.Extentions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using System.Text.RegularExpressions;
 
 namespace SanityTests.Tests
 {
-    class MainMenuPageTests : BaseTest
+    class SheetPage : BaseTest
     {
-        protected SheetPage _sheetPage;
+        protected SanityTests.SheetPage _sheetPage;
 
         [SetUp]
         public void SetUp()
         {
             Initialize();
-            _sheetPage = new SheetPage(Driver);
+            _sheetPage = new SanityTests.SheetPage(Driver);
             _sheetPage.NavigateTo();
             
         }
@@ -29,13 +27,13 @@ namespace SanityTests.Tests
         }
 
         [Test]
-        public void Google_First_Found_Result()
+        public void ZoomIn()
         {
+            string NextScaling = _sheetPage.GetNextScaling();
+            
             _sheetPage.ZoomIn.Click();
 
-            var style = _sheetPage.Sheet1.GetAttribute("style");
-
-            Match rex = DriverExtentions.ExtractPartOfString(style);
+            _sheetPage.AssertPageScale(NextScaling);
 
         }
 

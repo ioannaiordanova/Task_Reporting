@@ -15,11 +15,6 @@ namespace Core.Utilities.Extentions
 
         }
 
-        public static Match ExtractPartOfString(string str)
-        {
-            Match match = Regex.Match(str, @"\w*;*\s*scale((.*), (.*))");
-            Console.WriteLine("Match: " + match.Groups[1].Value);
-            return match;
-        }
+       
     }
 }
