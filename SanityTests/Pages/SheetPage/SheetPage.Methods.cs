@@ -15,6 +15,18 @@ namespace SanityTests
            return ScaleValuesList[GetNextScalingIndex()];
         }
 
+        public string GetPreviousScaling()
+        {
+            return ScaleValuesList[GetPreviousScalingIndex()];
+        }
+
+        public int GetPreviousScalingIndex()
+        {
+            return (0 == ScaleValuesList.IndexOf(GetPageScaleValue())) ?
+                ScaleValuesList.IndexOf(GetPageScaleValue())
+            :
+                ScaleValuesList.IndexOf(GetPageScaleValue()) - 1;
+        }
 
         public int GetNextScalingIndex()
         {

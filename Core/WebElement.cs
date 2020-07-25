@@ -148,7 +148,7 @@ namespace Core
 
         public WebElement FindElement(By by)
         {
-            IWebElement nativeElement = _webElement.FindElement(by);
+           IWebElement nativeElement = _webElement.FindElement(by);
            WebElement element = new WebElement(_webDriver, nativeElement, new ByChained(_by, by));
            return element;
         }

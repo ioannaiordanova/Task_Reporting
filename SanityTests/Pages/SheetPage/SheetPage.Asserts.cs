@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
-using System.Text.RegularExpressions;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace SanityTests
 {
@@ -9,6 +11,12 @@ namespace SanityTests
         {
             Assert.AreEqual(expectedSaclingIndex, GetPageScaleValue());
             Assert.AreEqual(expectedSaclingIndex, GetPageScaleValue());
+        }
+
+        [Obsolete]
+        public void AssertWebElementDoesNotExists(By _by)
+        {
+            Driver.WrappedWait.Until(ExpectedConditions.InvisibilityOfElementLocated(_by));
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace SanityTests.Tests
 {
@@ -37,5 +39,24 @@ namespace SanityTests.Tests
 
         }
 
+        [Test]
+        public void ZoomOut()
+        {
+            string PreviousScaling = _sheetPage.GetPreviousScaling();
+
+            _sheetPage.ZoomOut.Click();
+
+            _sheetPage.AssertPageScale(PreviousScaling);
+
+        }
+
+        [Test]
+        [Obsolete]
+        public void ToggleParametersArea()
+        {
+            _sheetPage.ToggleParameterButton.Click();
+
+            _sheetPage.AssertWebElementDoesNotExists(_sheetPage.ParametersArea.By);
+        }   
     }
 }

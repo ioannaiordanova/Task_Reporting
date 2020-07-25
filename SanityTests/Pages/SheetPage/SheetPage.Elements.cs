@@ -16,5 +16,7 @@ namespace SanityTests
         }
 
        public WebElement Sheet1 => Driver.FindElement(By.CssSelector(".sheet.page1"));
+
+        public WebElement ParametersArea => Driver.FindElement(By.CssSelector("[data-id = 'trv-parameters-area']"));
     }
 }

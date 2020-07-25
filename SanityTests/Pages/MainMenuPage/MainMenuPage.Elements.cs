@@ -10,5 +10,7 @@ namespace SanityTests
         public WebElement ZoomIn => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label='Zoom in']"));
 
         public WebElement ZoomOut => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label='Zoom out']"));
+
+        public WebElement ToggleParameterButton => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label='Toggle parameters area']"));
     }
 }
