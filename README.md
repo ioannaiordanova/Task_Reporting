@@ -4,7 +4,7 @@
 
 #### Core project has classes that wrap IWebDriver and IWebElement classes. It's an implementation of Decorator pattern.  
 
-#### SanityTests Project is tHe projecT with the AU tests.
+#### SanityTests Project is the project with the AU tests.
 
 **The Project Structure:**
 
