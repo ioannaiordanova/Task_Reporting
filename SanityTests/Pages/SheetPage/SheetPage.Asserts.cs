@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Core.Utilities.Extentions;
+using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace SanityTests
 {
@@ -6,8 +8,8 @@ namespace SanityTests
     {
         public void AssertPageScale(string expectedSaclingIndex)
         {
-            Assert.AreEqual(expectedSaclingIndex, GetPageScaleValue());
-            Assert.AreEqual(expectedSaclingIndex, GetPageScaleValue());
+            Assert.AreEqual(expectedSaclingIndex, ScaleValue);
+            Assert.AreEqual(expectedSaclingIndex, ScaleValue);
         }
 
         public void AssertHeaderContains(string Option)
@@ -20,6 +22,16 @@ namespace SanityTests
             Assert.AreEqual(option, GetSelectedSingleOptionWebElelent().Text);
         }
 
-       
+        public void AssertTrialOnScreen()
+        {
+            Assert.IsTrue(Trial.isVisibleInViewport());
+        }
+
+        public void AssertReportIsToggledWidth()
+        {
+            Assert.AreEqual((double)ActivePageWrapper.Width,(double)ReportPage.Width,10);
+        }
+
+
     }
 }

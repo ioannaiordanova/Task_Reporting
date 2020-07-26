@@ -8,13 +8,15 @@ namespace SanityTests.Tests
     class SheetTest : BaseTest
     {
         protected SheetPage _sheetPage;
+        protected Scale _scale;
 
         [SetUp]
         public void SetUp()
         {
             Initialize();
-            _sheetPage = new SanityTests.SheetPage(Driver);
+            _sheetPage = new SheetPage(Driver);
             _sheetPage.NavigateTo();
+            _scale = new Scale();
 
         }
 
@@ -29,9 +31,10 @@ namespace SanityTests.Tests
         }
 
         [Test]
+        [Obsolete]
         public void ZoomIn()
         {
-            string NextScaling = _sheetPage.GetNextScaling();
+            string NextScaling = _scale.GetNext(_sheetPage.ScaleValue);
 
             _sheetPage.ZoomIn.Click();
 
@@ -40,9 +43,10 @@ namespace SanityTests.Tests
         }
 
         [Test]
+        [Obsolete]
         public void ZoomOut()
         {
-            string PreviousScaling = _sheetPage.GetPreviousScaling();
+            string PreviousScaling = _scale.GetPrevious(_sheetPage.ScaleValue);
 
             _sheetPage.ZoomOut.Click();
 
@@ -67,6 +71,27 @@ namespace SanityTests.Tests
         }
 
         [Test]
+        [Obsolete]
+        public void TrialOnScreen_WhenToggle_FullPage_Cliked()
+        {
+            _sheetPage.WaitUntilDocumentIsLoaded();
+            _sheetPage.ToggleFullPageOrWidth.Click();
+
+            _sheetPage.AssertTrialOnScreen();
+        }
+
+        [Test]
+        [Obsolete]
+        public void TrialOnScreen_WhenToggle_PageWidth_Cliked()
+        {
+            _sheetPage.WaitUntilDocumentIsLoaded();
+            _sheetPage.ToggleFullPageOrWidth.Click();
+            _sheetPage.ToggleFullPageOrWidth.Click();
+
+            _sheetPage.AssertReportIsToggledWidth();
+        }
+
+        [Test]
         [TestCase("Accessories")]
         [TestCase("Clothing")]
         [TestCase("Bikes")]
@@ -83,9 +108,6 @@ namespace SanityTests.Tests
 
         [Test]
         [TestCase("Accessories", "Clothing")]
-        [TestCase("Clothing", "Components")]
-        [TestCase("Bikes", "Accessories")]
-        [TestCase("Components", "Bikes")]
         [Obsolete]
         public void BackButtonTest(string FirstCategory, string NextCategory)
         {
@@ -105,11 +127,10 @@ namespace SanityTests.Tests
         [Obsolete]
         public void NextButtonTest(string FirstCategory, string NextCategory)
         {
-
             _sheetPage.ClickSingleOptionAndWaitReload(FirstCategory);
             _sheetPage.ClickSingleOptionAndWaitReload(NextCategory);
-
-            _sheetPage.BackButton.Click();
+           
+            _sheetPage.BackButton.Click();      
             _sheetPage.NextButton.Click();
 
             _sheetPage.AssertHeaderContains(NextCategory);
@@ -120,14 +141,15 @@ namespace SanityTests.Tests
 
         [Test]
         [Obsolete]
-        [TestCase("Bikes", 2)]
-        public void SearchInReportContentTest(string SearchWord, int Occurencies)
+        [TestCase("Bikes",true, 2)]
+        public void SearchInReportContentTest(string SearchWord,bool MatchCase, int Occurencies)
         {
             _sheetPage.ClickSingleOptionAndWaitReload(SearchWord);
             _sheetPage.InitiateSearch();
             
             _sheetPage.SearchForm.FindTextBox.SetText(SearchWord + Keys.Enter);
 
+            if (MatchCase) _sheetPage.SearchForm.MatchCaseButton.Click();
             _sheetPage.SearchForm.AssertSearchResult(Occurencies);
         }
 

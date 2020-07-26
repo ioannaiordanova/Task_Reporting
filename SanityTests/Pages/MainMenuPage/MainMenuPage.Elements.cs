@@ -1,5 +1,6 @@
 ﻿using Core;
 using OpenQA.Selenium;
+using System;
 
 namespace SanityTests
 {
@@ -13,8 +14,10 @@ namespace SanityTests
 
         public WebElement ToggleParameterButton => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label='Toggle parameters area']"));
 
-        public WebElement BackButton => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label$='backward']"));
+        public WebElement ToggleFullPageOrWidth => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label^='Toggle FullPage']"));
 
+        public WebElement BackButton => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label$='backward']"));
+        
         public WebElement NextButton => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label$='forward']"));
 
         public WebElement SearchButton => MainMenu.FindElement(By.CssSelector("li[role='menuitem'][aria-label^='Search'"));

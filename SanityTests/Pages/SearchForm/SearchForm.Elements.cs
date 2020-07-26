@@ -10,5 +10,7 @@ namespace SanityTests
         public WebElement FindTextBox => SearchDraggable.FindElement(By.TagName("input"));
 
         public WebElement SearchResultLabel => SearchDraggable.FindElement(By.ClassName("trv-search-dialog-results-label"));
+
+        public WebElement MatchCaseButton => Driver.FindElement(By.CssSelector("[aria-label='Match case']"));
     }
 }

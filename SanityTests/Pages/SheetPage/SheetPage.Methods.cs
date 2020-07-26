@@ -24,30 +24,14 @@ namespace SanityTests
             }
         }
 
-        public string GetNextScaling()
-        {
-            return ScaleValuesList[GetNextScalingIndex()];
-        }
+       
 
-        public string GetPreviousScaling()
+        public string ScaleValue
         {
-            return ScaleValuesList[GetPreviousScalingIndex()];
-        }
-
-        public int GetPreviousScalingIndex()
-        {
-            return (0 == ScaleValuesList.IndexOf(GetPageScaleValue())) ?
-                ScaleValuesList.IndexOf(GetPageScaleValue())
-            :
-                ScaleValuesList.IndexOf(GetPageScaleValue()) - 1;
-        }
-
-        private int GetNextScalingIndex()
-        {
-            return (ScaleValuesList.Count == (ScaleValuesList.IndexOf(GetPageScaleValue()) + 1)) ?
-                ScaleValuesList.IndexOf(GetPageScaleValue())
-            :
-                ScaleValuesList.IndexOf(GetPageScaleValue()) + 1;
+            get
+            {
+                return GetPageScaleMatch().Groups[1].Value;
+            }
         }
 
 
@@ -56,10 +40,6 @@ namespace SanityTests
             return Regex.Match(Sheet1.GetAttribute("style"), @"\w*\s*scale\((.*),\s(.*)\).*");
         }
 
-        private string GetPageScaleValue()
-        {
-            return GetPageScaleMatch().Groups[1].Value;
-        }
 
         private WebElement GetSingleOptionWebElelentByName(string option)
         {
@@ -74,8 +54,7 @@ namespace SanityTests
         [Obsolete]
         public void ClickSingleOptionAndWaitReload(string SingleOptionName)
         {
-            WebElement OptionElement = GetSingleOptionWebElelentByName(SingleOptionName);
-            OptionElement.Click();
+            GetSingleOptionWebElelentByName(SingleOptionName).Click();
             WaitUntilDocumentIsLoaded();
         }
 
@@ -87,10 +66,15 @@ namespace SanityTests
             Driver.WrappedWait.Until(ExpectedConditions.ElementIsVisible(_searchForm.SearchDraggable.By));
         }
 
+       
+
         [Obsolete]
-        private void WaitUntilDocumentIsLoaded()
+        public void WaitUntilDocumentIsLoaded()
         {
+            Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "so far"));
             Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "Done"));
         }
+
+      
     }
 }

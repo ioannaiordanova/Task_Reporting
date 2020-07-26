@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace Core
 {
@@ -41,6 +42,9 @@ namespace Core
 
         public bool? Displayed => _webElement?.Displayed;
 
+        public Size Size => _webElement.Size;
+        public int Width => this.Size.Width;
+
         public List<WebElement> FindElements(By by)
         {
 
@@ -67,9 +71,14 @@ namespace Core
             return this;
         }
 
+        
         public WebElement FindElement(By by)
         {
-            IWebElement nativeElement = _webElement.FindElement(by);
+          
+            var _webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30));
+            IWebElement nativeElement =
+             _webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(new ByChained(_by, by)));
+
             WebElement element = new WebElement(_webDriver, nativeElement, new ByChained(_by, by));
             return element;
         }
@@ -91,6 +100,7 @@ namespace Core
 
         }
 
+       
         public void Submit()
         {
             _webElement.Submit();
