@@ -3,7 +3,7 @@ using System;
 
 namespace SanityTests
 {
-    public partial class SearchForm : BasePage
+  public partial class SearchForm : BasePage
     {
         [Obsolete]
         public void AssertSearchResult(int _occurencies)

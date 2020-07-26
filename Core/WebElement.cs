@@ -99,8 +99,7 @@ namespace Core
             webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(by));
 
         }
-
-       
+  
         public void Submit()
         {
             _webElement.Submit();

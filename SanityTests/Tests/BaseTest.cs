@@ -8,8 +8,6 @@ namespace SanityTests
     {
         public WebDriver Driver { get; set; }
 
-
-
         public void Initialize()
         {
             Driver = new WebDriver();

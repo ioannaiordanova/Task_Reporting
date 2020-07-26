@@ -7,8 +7,6 @@ namespace SanityTests
     {
         static List<string> ValuesList = new List<string>() { "0.1", "0.25", "0.5", "0.75", "1", "1.5", "2", "4", "8" };
         
-
-      
         public int GetPreviousIndex(string currentValue)
         {
             return (0 == ValuesList.IndexOf(currentValue)) ?

@@ -14,7 +14,6 @@ namespace SanityTests
         }
 
         SearchForm _searchForm;
-
         public SearchForm SearchForm 
         {
             get 
@@ -24,8 +23,6 @@ namespace SanityTests
             }
         }
 
-       
-
         public string ScaleValue
         {
             get
@@ -34,12 +31,10 @@ namespace SanityTests
             }
         }
 
-
         private Match GetPageScaleMatch()
         {
             return Regex.Match(Sheet1.GetAttribute("style"), @"\w*\s*scale\((.*),\s(.*)\).*");
         }
-
 
         private WebElement GetSingleOptionWebElelentByName(string option)
         {
@@ -66,15 +61,11 @@ namespace SanityTests
             Driver.WrappedWait.Until(ExpectedConditions.ElementIsVisible(_searchForm.SearchDraggable.By));
         }
 
-       
-
         [Obsolete]
         public void WaitUntilDocumentIsLoaded()
         {
             Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "so far"));
             Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "Done"));
-        }
-
-      
+        }   
     }
 }

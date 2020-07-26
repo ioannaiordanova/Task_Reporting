@@ -1,6 +1,5 @@
 ﻿using Core.Utilities.Extentions;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace SanityTests
 {
@@ -31,7 +30,5 @@ namespace SanityTests
         {
             Assert.AreEqual((double)ActivePageWrapper.Width,(double)ReportPage.Width,10);
         }
-
-
     }
 }
