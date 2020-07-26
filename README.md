@@ -1,2 +1,2 @@
-# ReportsTesting
-Automation tests for HTML5 Report Viewer
+
+## Automation tests for HTML5 Report Viewer
