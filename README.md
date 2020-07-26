@@ -7,8 +7,8 @@
 #### SanityTests Project is tHe projecT with the AU tests.
 
 **The Project Structure:**
-![ProjectStructure](https://user-images.githubusercontent.com/35447819/88487932-3afc2780-cf92-11ea-9970-150818a31903.png)
 
+![ProjectStructure](https://user-images.githubusercontent.com/35447819/88487932-3afc2780-cf92-11ea-9970-150818a31903.png)
 
 **Tests included:**
 * ZoomIn - Clicks on the ZoomIn Button on the main menu and checks style: scale values based on the previous values.
