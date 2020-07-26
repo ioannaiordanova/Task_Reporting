@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace Core.Utilities.Extentions
+namespace Core.Utilities.Helpers
 {
-    public static class DriverExtentions
+    public static class Helper
     {
         public static void CreateFolderIfNotExists(string folder)
         {
@@ -13,5 +13,4 @@ namespace Core.Utilities.Extentions
 
         }
     }
-       
 }

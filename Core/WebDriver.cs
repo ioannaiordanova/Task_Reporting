@@ -1,4 +1,4 @@
-﻿using Core.Utilities.Extentions;
+﻿using Core.Utilities.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -104,7 +104,7 @@ namespace Core
             {
                 var path = Path.GetFullPath(@"..\..\..\");
                 var screenshot = ((ITakesScreenshot)_webDriver).GetScreenshot();
-                DriverExtentions.CreateFolderIfNotExists($@"{path}\\Screenshots\\");
+                Helper.CreateFolderIfNotExists($@"{path}\\Screenshots\\");
                 string FullName = TestContext.CurrentContext.Test.FullName.Replace(" ", "").Replace("\"", "").Replace(",","_");
                 screenshot.SaveAsFile($@"{path}\\Screenshots\\{FullName}.png", ScreenshotImageFormat.Png);
             }
