@@ -2,6 +2,8 @@
 
 #### WebApplicationTelerikReporting is the  ASP.NET Web Application (.NET Framework) with the HTML5 Report Viewer Page. As a template I have used Product Line Sales.trdp
 
+![template](https://user-images.githubusercontent.com/35447819/88489468-1c4f5e00-cf9d-11ea-9266-27cbbbfbd7e3.png)
+
 
 #### Core project has classes that wrap IWebDriver and IWebElement classes. It's an implementation of Decorator pattern.  
 
