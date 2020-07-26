@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using Core.Utilities.Extentions;
+﻿using Core.Utilities.Extentions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -11,10 +6,14 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Safari;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 
 namespace Core
 {
@@ -106,7 +105,8 @@ namespace Core
                 var path = Path.GetFullPath(@"..\..\..\");
                 var screenshot = ((ITakesScreenshot)_webDriver).GetScreenshot();
                 DriverExtentions.CreateFolderIfNotExists($@"{path}\\Screenshots\\");
-                screenshot.SaveAsFile($@"{path}\\Screenshots\\{TestContext.CurrentContext.Test.FullName}.png", ScreenshotImageFormat.Png);
+                string FullName = TestContext.CurrentContext.Test.FullName.Replace(" ", "").Replace("\"", "").Replace(",","_");
+                screenshot.SaveAsFile($@"{path}\\Screenshots\\{FullName}.png", ScreenshotImageFormat.Png);
             }
         }
     }

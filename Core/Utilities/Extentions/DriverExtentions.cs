@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
+﻿using System.IO;
 
 namespace Core.Utilities.Extentions
 {
@@ -13,8 +11,6 @@ namespace Core.Utilities.Extentions
                 DirectoryInfo di = Directory.CreateDirectory(folder);
             }
 
-        }
-
-       
+        }    
     }
 }

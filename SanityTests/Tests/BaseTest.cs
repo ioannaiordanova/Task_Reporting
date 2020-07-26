@@ -1,6 +1,5 @@
 ﻿using Core;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace SanityTests
 {

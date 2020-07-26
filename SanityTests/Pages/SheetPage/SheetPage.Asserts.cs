@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace SanityTests
 {
@@ -13,10 +10,16 @@ namespace SanityTests
             Assert.AreEqual(expectedSaclingIndex, GetPageScaleValue());
         }
 
-        [Obsolete]
-        public void AssertWebElementDoesNotExists(By _by)
+        public void AssertHeaderContains(string Option)
         {
-            Driver.WrappedWait.Until(ExpectedConditions.InvisibilityOfElementLocated(_by));
+            Assert.IsTrue(TextBoxCategories.Text.Contains(Option));
         }
+
+        public void AssertSelectedCategoryIs(string option)
+        {
+            Assert.AreEqual(option, GetSelectedSingleOptionWebElelent().Text);
+        }
+
+       
     }
 }

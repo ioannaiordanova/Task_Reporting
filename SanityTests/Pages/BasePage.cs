@@ -1,4 +1,5 @@
 ﻿using Core;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -7,7 +8,7 @@ namespace SanityTests
 {
     public abstract class BasePage
     {
-        protected abstract string Url { get;}
+        protected virtual string Url { get;}
         public BasePage(WebDriver driver)
         {
             Driver = driver;
@@ -35,6 +36,18 @@ namespace SanityTests
             IJavaScriptExecutor js = (IJavaScriptExecutor)Driver.WrappedDriver;
             WebDriverWait wait = new WebDriverWait(Driver.WrappedDriver, new TimeSpan(0, 0, timeoutSec));
             wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
+        }
+
+        [Obsolete]
+        public void AssertWebElementDoesNotExists(By _by)
+        {
+            Assert.IsTrue(Driver.WrappedWait.Until(ExpectedConditions.InvisibilityOfElementLocated(_by)));
+        }
+
+        [Obsolete]
+        public void AssertWebElementVisisble(By _by)
+        {
+           Assert.IsInstanceOf(typeof(IWebElement),Driver.WrappedWait.Until(ExpectedConditions.ElementIsVisible(_by)));
         }
     }
 }

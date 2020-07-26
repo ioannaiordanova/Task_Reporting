@@ -1,18 +1,32 @@
 ﻿using Core;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SanityTests
 {
-    public partial class SheetPage : MainMenuPage 
+    public partial class SheetPage : MainMenuPage
     {
         public SheetPage(WebDriver driver) : base(driver)
         {
-           
+
+        }
+
+        SearchForm _searchForm;
+
+        public SearchForm SearchForm 
+        {
+            get 
+            {
+                return _searchForm;
+
+            }
         }
 
         public string GetNextScaling()
         {
-           return ScaleValuesList[GetNextScalingIndex()];
+            return ScaleValuesList[GetNextScalingIndex()];
         }
 
         public string GetPreviousScaling()
@@ -28,7 +42,7 @@ namespace SanityTests
                 ScaleValuesList.IndexOf(GetPageScaleValue()) - 1;
         }
 
-        public int GetNextScalingIndex()
+        private int GetNextScalingIndex()
         {
             return (ScaleValuesList.Count == (ScaleValuesList.IndexOf(GetPageScaleValue()) + 1)) ?
                 ScaleValuesList.IndexOf(GetPageScaleValue())
@@ -36,19 +50,47 @@ namespace SanityTests
                 ScaleValuesList.IndexOf(GetPageScaleValue()) + 1;
         }
 
-        public int GetScalingIndex()
+
+        private Match GetPageScaleMatch()
         {
-            return ScaleValuesList.IndexOf(GetPageScaleValue());
+            return Regex.Match(Sheet1.GetAttribute("style"), @"\w*\s*scale\((.*),\s(.*)\).*");
         }
 
-        public Match GetPageScaleMatch()
-        {
-            return  Regex.Match(Sheet1.GetAttribute("style"), @"\w*\s*scale\((.*),\s(.*)\).*");
-        }
-
-        public string GetPageScaleValue()
+        private string GetPageScaleValue()
         {
             return GetPageScaleMatch().Groups[1].Value;
+        }
+
+        private WebElement GetSingleOptionWebElelentByName(string option)
+        {
+            return SingleSelectOptions.First(s => s.Text == option);
+        }
+
+        private WebElement GetSelectedSingleOptionWebElelent()
+        {
+            return SingleSelectOptions.First(s => s.GetAttribute("class").Contains("selected"));
+        }
+
+        [Obsolete]
+        public void ClickSingleOptionAndWaitReload(string SingleOptionName)
+        {
+            WebElement OptionElement = GetSingleOptionWebElelentByName(SingleOptionName);
+            OptionElement.Click();
+            WaitUntilDocumentIsLoaded();
+        }
+
+        [Obsolete]
+        public void InitiateSearch()
+        {
+            SearchButton.Click();
+            _searchForm = new SearchForm(Driver);
+            Driver.WrappedWait.Until(ExpectedConditions.ElementIsVisible(_searchForm.SearchDraggable.By));
+        }
+
+        [Obsolete]
+        private void WaitUntilDocumentIsLoaded()
+        {
+            Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "Done"));
         }
     }
 }
