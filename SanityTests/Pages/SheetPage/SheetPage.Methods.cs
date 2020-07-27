@@ -33,7 +33,7 @@ namespace SanityTests
 
         private Match GetPageScaleMatch()
         {
-            return Regex.Match(Sheet1.GetAttribute("style"), @"\w*\s*scale\((.*),\s(.*)\).*");
+            return Regex.Match(Sheet1.GetAttribute("style"), @"\w*\s*scale\((([0-9]*[.])?[0-9]+)(?:,\s(?:([0-9]*[.])?[0-9]+))?\).*");
         }
 
         private WebElement GetSingleOptionWebElelentByName(string option)
@@ -67,5 +67,7 @@ namespace SanityTests
             Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "so far"));
             Driver.WrappedWait.Until(ExpectedConditions.TextToBePresentInElement(MessageBox.WrappedElement, "Done"));
         }   
+
+
     }
 }

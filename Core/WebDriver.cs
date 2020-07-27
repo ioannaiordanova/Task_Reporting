@@ -39,7 +39,12 @@ namespace Core
                     _webDriver = new ChromeDriver(Environment.CurrentDirectory);
                     break;
                 case Browser.Firefox:
-                    _webDriver = new FirefoxDriver(Environment.CurrentDirectory);
+                    FirefoxDriverService geckoService =
+                    FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory);
+                    geckoService.Host = "::1";
+                    var firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.AcceptInsecureCertificates = true;
+                    _webDriver = new FirefoxDriver(geckoService,firefoxOptions);
                     break;
                 case Browser.Edge:
                     _webDriver = new EdgeDriver(Environment.CurrentDirectory);

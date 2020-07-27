@@ -5,7 +5,7 @@ using System;
 
 namespace SanityTests.Tests
 {
-    class SheetTest : BaseTest
+    class SheetPageTest : BaseTest
     {
         protected SheetPage _sheetPage;
         protected Scale _scale;
