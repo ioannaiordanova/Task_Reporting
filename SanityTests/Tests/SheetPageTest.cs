@@ -3,12 +3,14 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using System;
 
-namespace SanityTests.Tests
+namespace SanityTests
 {
+    [TestFixture]
     class SheetPageTest : BaseTest
     {
         protected SheetPage _sheetPage;
         protected Scale _scale;
+      
 
         [SetUp]
         public void SetUp()

@@ -1,13 +1,14 @@
 ﻿using Core;
+using Microsoft.Extensions.Configuration;
 
 namespace SanityTests
 {
     public partial class MainMenuPage : BasePage
     {
-        protected override string Url => "http://localhost:44666/";
+        public static ConfigurationRoot Config { get; set; }
+        protected override string Url => Config["Uri"];
         public MainMenuPage(WebDriver driver): base(driver) 
-        { 
-        
+        {
         }
     }
 }
